@@ -1,14 +1,36 @@
-# Welcome to your Lovable project
+# Aysan Elite Online
+
+You are an expert frontend developer, creative developer, UX designer and brand-focused art director. Build a high-quality modern website for Aysan Army Elite Training Club.
+The assets are attached. 
+Use this Google Maps location as the primary source:
+
+https://maps.app.goo.gl/nDPd9NEV24cjBFSw8
+fetch the data for reviews place number and everything
+Do not invent additional business facts.
+
+Do not invent trainers.
+
+Do not invent certifications.
+
+Do not invent transformation statistics.
+
+Do not invent medical claims.
+
+Do not claim guaranteed results.
+
+Only use information that can be verified.
+
+Make the front end incredibly good
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/e441abbe-8794-4d55-a491-303a8018a163).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +42,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
