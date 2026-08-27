@@ -37,7 +37,7 @@ export function WordsReveal({
           <motion.span
             className={cn("inline-block will-change-transform", wordClassName)}
             initial={{ y: "110%", opacity: 0, rotate: 1.5 }}
-            animate={play ? { y: "0%", opacity: 1, rotate: 0 } : undefined}
+            animate={play ? { y: "0%", opacity: 1, rotate: 0 } : { y: "110%", opacity: 0, rotate: 1.5 }}
             transition={{
               duration: 1.05,
               delay: delay + index * stagger,
