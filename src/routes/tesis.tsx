@@ -81,7 +81,7 @@ const features = [
     body: "Ekipmanlar arasında hareket alanı bırakan, sıkışık olmayan bir düzen.",
   },
   {
-    icon: Mirror,
+    icon: ScanLine,
     title: "Ayna detayları",
     body: "Kemerli ve arkadan aydınlatmalı aynalar; hem fonksiyonel hem estetik.",
   },
