@@ -1,11 +1,10 @@
-import { CLUB_NAME, type PlaceData } from "@/lib/place";
+import { CLUB_NAME, PLACE_ID, type PlaceData } from "@/lib/place";
 
 export function MapEmbed({ place }: { place: PlaceData }) {
   // Keyless Google Maps embed — works in preview and on any domain.
-  const query = place.placeId
-    ? `place_id:${place.placeId}`
-    : `${place.lat},${place.lng}`;
-  const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=16&hl=tr&output=embed`;
+  const query = `${place.lat},${place.lng}`;
+  const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&query_place_id=${PLACE_ID}&z=16&hl=tr&output=embed`;
+
 
   return (
     <div className="overflow-hidden rounded-lg border border-border/70 glow-soft">
