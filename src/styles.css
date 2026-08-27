@@ -134,10 +134,10 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.022em;
-
-    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    line-height: 0.95;
   }
 
 
