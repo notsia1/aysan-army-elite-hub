@@ -92,7 +92,7 @@ function Facility() {
         ))}
       </div>
 
-      <section className="border-t border-border/60 bg-secondary">
+      <section className="border-t border-border/60 bg-secondary/40 backdrop-blur-md">
         <div className="mx-auto grid max-w-7xl gap-14 px-5 py-20 sm:px-8 lg:grid-cols-2">
           <Reveal>
             <OpeningHours place={place} />

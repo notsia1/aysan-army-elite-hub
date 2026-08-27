@@ -84,14 +84,14 @@ function Home() {
             <img
               src={logoUrl}
               alt="Aysan Army Elite Training Club logosu"
-              className="h-20 w-auto object-contain sm:h-28"
+              className="float-slow h-20 w-auto object-contain sm:h-28"
             />
           </Reveal>
 
           <Reveal delay={160}>
             <h1 className="mt-10 max-w-4xl text-[clamp(3rem,8vw,6.5rem)] text-plaster">
               Ring, pilates ve kuvvet
-              <span className="mt-1 block text-honey">tek çatı altında</span>
+              <span className="shine-text mt-1 block">tek çatı altında</span>
             </h1>
           </Reveal>
 
@@ -107,10 +107,14 @@ function Home() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 to="/iletisim"
-                className="inline-flex items-center gap-2 rounded-full bg-honey px-7 py-3.5 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
+                className="pulse-ring group inline-flex items-center gap-2 rounded-full bg-honey px-7 py-3.5 text-sm font-semibold text-ink transition-transform hover:-translate-y-0.5"
               >
                 Bize ulaşın
-                <ArrowUpRight size={16} aria-hidden />
+                <ArrowUpRight
+                  size={16}
+                  aria-hidden
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
               </Link>
               {whatsapp && (
                 <a
@@ -128,8 +132,25 @@ function Home() {
         </div>
       </section>
 
+
+      {/* Animated brand band */}
+      <div className="relative flex overflow-hidden border-b border-border/60 bg-ink/60 py-4 backdrop-blur-md">
+        <div className="marquee-track flex shrink-0 items-center gap-10 whitespace-nowrap pr-10">
+          {Array.from({ length: 2 }).map((_, group) => (
+            <div key={group} className="flex items-center gap-10">
+              {["RING", "PILATES", "KUVVET", "ELITE TRAINING CLUB", "ÇEKMEKÖY"].map((word) => (
+                <span key={`${group}-${word}`} className="eyebrow text-plaster/55">
+                  {word}
+                  <span className="ml-10 text-accent">/</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Facts strip — Google-sourced only */}
-      <section className="border-y border-border/60 bg-secondary">
+      <section className="border-y border-border/60 bg-secondary/40 backdrop-blur-md">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-3">
           {place.address && (
             <div className="flex gap-4">

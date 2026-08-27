@@ -9,7 +9,7 @@ export function SiteFooter({ place }: { place: PlaceData | null }) {
   const year = 2026;
 
   return (
-    <footer className="grain border-t border-border/60 bg-secondary">
+    <footer className="grain border-t border-border/60 bg-secondary/40 backdrop-blur-md">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <span className="flex items-center gap-3">

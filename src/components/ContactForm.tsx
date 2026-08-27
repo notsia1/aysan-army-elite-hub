@@ -57,7 +57,7 @@ export function ContactForm() {
 
   if (status === "sent") {
     return (
-      <div className="rounded-lg border border-border/70 bg-card p-10 text-center glow-soft">
+      <div className="rounded-lg border border-border/70 bg-card/70 backdrop-blur-sm lift p-10 text-center glow-soft">
         <h3 className="font-display text-3xl text-foreground">Mesajınız bize ulaştı</h3>
         <p className="mt-4 text-sm text-muted-foreground">
           En kısa sürede size dönüş yapılacaktır. Acele bir durum varsa telefondan da
@@ -77,7 +77,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-lg border border-border/70 bg-card p-7 glow-soft sm:p-9"
+      className="rounded-lg border border-border/70 bg-card/70 backdrop-blur-sm lift p-7 glow-soft sm:p-9"
     >
       <h2 className="font-display text-3xl text-foreground">Bize yazın</h2>
       <p className="mt-3 text-sm text-muted-foreground">

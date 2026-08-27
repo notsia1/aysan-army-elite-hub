@@ -10,6 +10,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { LivingBackdrop } from "@/components/LivingBackdrop";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Toaster } from "@/components/ui/sonner";
@@ -94,7 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap",
       },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "canonical", href: "https://aysanarmy.lovable.app/" },
@@ -124,7 +125,8 @@ function SiteChrome() {
   const { data: place } = useQuery(placeQueryOptions);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="relative flex min-h-screen flex-col">
+      <LivingBackdrop />
       <SiteHeader phone={place?.nationalPhone ?? null} />
       <main className="flex-1">
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
