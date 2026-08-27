@@ -45,7 +45,7 @@ export function SiteHeader({ phone }: { phone: string | null }) {
               Aysan Army
             </span>
             <span className="eyebrow block text-[0.6rem] text-muted-foreground">
-              Elite Training Club
+              ELITE TRAINING CLUB
             </span>
           </span>
           <span className="sr-only">{CLUB_NAME}</span>
