@@ -142,6 +142,16 @@ function Home() {
             )}
             <GoogleRating place={place} className="border-plaster/30 bg-ink/40 text-plaster" />
           </motion.div>
+
+          <motion.div
+            className="mt-16 flex items-center gap-3 text-plaster/50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
+          >
+            <span className="scroll-line h-10 w-px overflow-hidden bg-plaster/20" aria-hidden />
+            <span className="eyebrow text-[0.6rem]">Aşağı kaydırın</span>
+          </motion.div>
         </motion.div>
       </section>
 
