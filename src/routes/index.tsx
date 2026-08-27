@@ -7,6 +7,8 @@ import { motion } from "motion/react";
 import { ArchPhoto } from "@/components/ArchPhoto";
 import { GoogleRating } from "@/components/GoogleRating";
 import { Reveal } from "@/components/Reveal";
+import { WebGLImage } from "@/components/WebGLImage";
+import { WordsReveal } from "@/components/WordsReveal";
 import { Reviews } from "@/components/Reviews";
 import { clubPhotos, logoUrl } from "@/lib/photos";
 import { placeQueryOptions } from "@/lib/place-query";
@@ -39,19 +41,19 @@ export const Route = createFileRoute("/")({
 const areas = [
   {
     title: "Ring Salonu",
-    body: "Halat kenarlıklı ring, duvar ve zincir kum torbaları; klasik büstlerle çevrili bir alan.",
+    body: "Tam ölçekli ring, ağır kum torbaları ve boks çalışması için ayrılmış özel bir kat. Teknik çalışmadan kondisyona kadar her seviyeye açık.",
     photo: clubPhotos.ring,
     to: "/tesis" as const,
   },
   {
     title: "Pilates Stüdyosu",
-    body: "Ahşap reformer ve cadillac ekipmanları, kemerli ayna ve doğal ışık alan sakin bir oda.",
+    body: "Reformer ve cadillac ekipmanlarıyla donatılmış, gün ışığı alan sakin bir stüdyo. Duruş, esneklik ve kontrollü güç için birebir çalışma alanı.",
     photo: clubPhotos.pilates,
     to: "/tesis" as const,
   },
   {
     title: "Kuvvet Alanı",
-    body: "Kemerli nişlerin altında sıralanmış paslanmaz çelik dambıl seti ve kablo istasyonu.",
+    body: "Eksiksiz dambıl seti, kablo istasyonu ve serbest çalışma alanı. Kalabalık salon karmaşası olmadan, düzenli ve ferah bir kuvvet bölümü.",
     photo: clubPhotos.strength,
     to: "/tesis" as const,
   },
@@ -66,71 +68,74 @@ function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-ink">
         <div className="absolute inset-0">
-          <motion.img
-            src={clubPhotos.ring.url}
-            alt={clubPhotos.ring.alt}
-            className="h-full w-full object-cover"
-            loading="eager"
-            initial={{ scale: 1.12, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 2.4, ease: [0.16, 1, 0.3, 1] }}
-          />
+          <WebGLImage src={clubPhotos.ring.url} alt={clubPhotos.ring.alt} />
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/35" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
         </div>
 
         <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-24 pt-36 sm:px-8">
-          <Reveal>
-            <img
-              src={logoUrl}
-              alt="Aysan Army Elite Training Club logosu"
-              className="float-slow h-20 w-auto object-contain sm:h-28"
+          <motion.img
+            src={logoUrl}
+            alt="Aysan Army Elite Training Club logosu"
+            className="float-slow h-20 w-auto self-start object-contain sm:h-28"
+            initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          />
+
+          <h1 className="mt-10 max-w-4xl text-[clamp(3rem,8vw,6.5rem)] leading-[0.95] text-plaster">
+            <WordsReveal text="Boks, pilates ve kuvvet" delay={0.25} />
+            <WordsReveal
+              text="aynı çatı altında"
+              className="mt-1"
+              wordClassName="shine-text"
+              delay={0.55}
             />
-          </Reveal>
+          </h1>
 
-          <Reveal delay={160}>
-            <h1 className="mt-10 max-w-4xl text-[clamp(3rem,8vw,6.5rem)] text-plaster">
-              Ring, pilates ve kuvvet
-              <span className="shine-text mt-1 block">tek çatı altında</span>
-            </h1>
-          </Reveal>
+          <motion.p
+            className="mt-8 max-w-xl text-base leading-relaxed text-plaster/85"
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Çekmeköy&apos;ün merkezinde, kalabalık zincir salonların aksine sınırlı sayıda
+            üyeyle çalışan özel bir antrenman kulübü. Ferah alanlar, bakımlı ekipman ve
+            sakin bir atmosfer — antrenmana odaklanmak için tasarlanmış bir kulüp.
+          </motion.p>
 
-          <Reveal delay={260}>
-            <p className="mt-8 max-w-xl text-base leading-relaxed text-plaster/80">
-              Çekmeköy&apos;de, kemerli ışıklar ve klasik heykellerle kurgulanmış özel bir
-              antrenman kulübü. {place.primaryType ? `Google’da ${place.primaryType.toLocaleLowerCase("tr")} olarak listelenir.` : ""}
-            </p>
-          </Reveal>
-
-
-          <Reveal delay={320}>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                to="/iletisim"
-                className="pulse-ring group inline-flex items-center gap-2 rounded-full bg-honey px-7 py-3.5 text-sm font-semibold text-ink transition-transform hover:-translate-y-0.5"
+          <motion.div
+            className="mt-10 flex flex-wrap items-center gap-4"
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.15, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Link
+              to="/iletisim"
+              className="pulse-ring group inline-flex items-center gap-2 rounded-full bg-honey px-7 py-3.5 text-sm font-semibold text-ink transition-transform hover:-translate-y-0.5"
+            >
+              Bize ulaşın
+              <ArrowUpRight
+                size={16}
+                aria-hidden
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+            {whatsapp && (
+              <a
+                href={whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-plaster/40 px-7 py-3.5 text-sm font-medium text-plaster transition-colors hover:bg-secondary/10"
               >
-                Bize ulaşın
-                <ArrowUpRight
-                  size={16}
-                  aria-hidden
-                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </Link>
-              {whatsapp && (
-                <a
-                  href={whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-plaster/40 px-7 py-3.5 text-sm font-medium text-plaster transition-colors hover:bg-secondary/10"
-                >
-                  WhatsApp
-                </a>
-              )}
-              <GoogleRating place={place} className="border-plaster/30 bg-ink/40 text-plaster" />
-            </div>
-          </Reveal>
+                WhatsApp
+              </a>
+            )}
+            <GoogleRating place={place} className="border-plaster/30 bg-ink/40 text-plaster" />
+          </motion.div>
         </div>
       </section>
+
 
 
       {/* Animated brand band */}
@@ -185,7 +190,8 @@ function Home() {
           <p className="eyebrow text-accent">Salonun içi</p>
           <h2 className="mt-4 text-4xl sm:text-5xl">Üç ayrı alan, tek bir kulüp</h2>
           <p className="mt-5 text-muted-foreground">
-            Aşağıdakiler kulübün kendi fotoğraflarında görülen alanlardır.
+            Üç ayrı disiplin, üç ayrı alan; hepsi aynı özenle kurulmuş tek bir kulübün
+            parçası. Hangi alanda çalışırsanız çalışın, ekipman ve düzen aynı standartta.
           </p>
         </Reveal>
 
@@ -214,11 +220,12 @@ function Home() {
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 py-24 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="max-w-2xl text-4xl text-plaster sm:text-5xl">
-              Salonu görmek için uğrayın
+              Gelin, kulübü kendiniz görün
             </h2>
             <p className="mt-5 max-w-lg text-plaster/80">
-              Adres, çalışma saatleri ve iletişim bilgileri iletişim sayfasında güncel
-              olarak yer alıyor.
+              Kulübü gezmek, alanları görmek ve size uygun programı konuşmak için kapımız
+              açık. Adres, çalışma saatleri ve iletişim kanallarının tamamı iletişim
+              sayfasında.
             </p>
           </div>
           <Link

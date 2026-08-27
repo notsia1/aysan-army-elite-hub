@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import { LivingBackdrop } from "@/components/LivingBackdrop";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { Toaster } from "@/components/ui/sonner";
 import { placeQueryOptions } from "@/lib/place-query";
 
@@ -126,6 +127,7 @@ function SiteChrome() {
 
   return (
     <div className="relative flex min-h-screen flex-col">
+      <SmoothScroll />
       <LivingBackdrop />
       <SiteHeader phone={place?.nationalPhone ?? null} />
       <main className="flex-1">
