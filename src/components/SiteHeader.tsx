@@ -55,8 +55,8 @@ export function SiteHeader({ phone }: { phone: string | null }) {
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
-              activeProps={{ className: "text-foreground after:scale-x-100" }}
-              className="relative py-1 text-sm text-muted-foreground transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-500 hover:text-foreground hover:after:scale-x-100"
+              activeProps={{ className: "text-plaster after:scale-x-100" }}
+              className="relative py-1 font-display text-base tracking-[0.12em] text-plaster/65 transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-honey after:transition-transform after:duration-500 hover:text-plaster hover:after:scale-x-100"
             >
               {item.label}
             </Link>
@@ -67,7 +67,7 @@ export function SiteHeader({ phone }: { phone: string | null }) {
           {dialable && (
             <a
               href={`tel:${dialable}`}
-              className="hidden items-center gap-2 rounded-full bg-walnut px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:inline-flex"
+              className="hidden items-center gap-2 rounded-full bg-honey px-5 py-2.5 text-sm font-semibold text-ink transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
             >
               <Phone size={15} aria-hidden />
               {phone}
@@ -76,7 +76,7 @@ export function SiteHeader({ phone }: { phone: string | null }) {
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
-            className="grid h-11 w-11 place-items-center rounded-full border border-border/70 text-foreground lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full border border-plaster/30 text-plaster lg:hidden"
             aria-expanded={open}
             aria-label={open ? "Menüyü kapat" : "Menüyü aç"}
           >
@@ -86,7 +86,7 @@ export function SiteHeader({ phone }: { phone: string | null }) {
       </div>
 
       {open && (
-        <div className="border-t border-border/60 bg-background/95 backdrop-blur-xl lg:hidden">
+        <div className="border-t border-plaster/10 bg-ink/95 backdrop-blur-xl lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col px-5 py-4 sm:px-8" aria-label="Mobil menü">
             {navItems.map((item) => (
               <Link
@@ -94,8 +94,8 @@ export function SiteHeader({ phone }: { phone: string | null }) {
                 to={item.to}
                 onClick={() => setOpen(false)}
                 activeOptions={{ exact: item.to === "/" }}
-                activeProps={{ className: "text-foreground" }}
-                className="border-b border-border/40 py-3.5 font-display text-xl text-muted-foreground last:border-0"
+                activeProps={{ className: "text-honey" }}
+                className="border-b border-plaster/10 py-3.5 font-display text-2xl tracking-[0.1em] text-plaster/70 last:border-0"
               >
                 {item.label}
               </Link>
@@ -103,6 +103,7 @@ export function SiteHeader({ phone }: { phone: string | null }) {
           </nav>
         </div>
       )}
+
     </header>
   );
 }
