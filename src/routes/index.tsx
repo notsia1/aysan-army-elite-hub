@@ -174,30 +174,41 @@ function Home() {
       </div>
 
       {/* Facts strip — Google-sourced only */}
-      <section className="border-y border-border/60 bg-secondary/40 backdrop-blur-md">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-3">
+      <section className="border-b border-border/60 bg-secondary/30 backdrop-blur-md">
+        <div className="mx-auto grid max-w-7xl divide-y divide-border/60 px-5 sm:px-8 md:grid-cols-3 md:divide-x md:divide-y-0">
           {place.address && (
-            <div className="flex gap-4">
-              <MapPin size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden />
-              <p className="text-sm leading-relaxed text-muted-foreground">{place.address}</p>
+            <div className="flex gap-4 py-8 md:pr-10">
+              <MapPin size={16} className="mt-1 shrink-0 text-accent" aria-hidden />
+              <div>
+                <p className="eyebrow text-[0.6rem] text-muted-foreground/70">Adres</p>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/85">{place.address}</p>
+              </div>
             </div>
           )}
           {place.weekdayDescriptions.length > 0 && (
-            <div className="flex gap-4">
-              <Clock size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden />
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                Hafta içi {place.weekdayDescriptions[0]?.split(":").slice(1).join(":").trim()} ·
-                hafta sonu {place.weekdayDescriptions[5]?.split(":").slice(1).join(":").trim()}
-              </p>
+            <div className="flex gap-4 py-8 md:px-10">
+              <Clock size={16} className="mt-1 shrink-0 text-accent" aria-hidden />
+              <div>
+                <p className="eyebrow text-[0.6rem] text-muted-foreground/70">Çalışma saatleri</p>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/85">
+                  Hafta içi {place.weekdayDescriptions[0]?.split(":").slice(1).join(":").trim()}
+                  <br />
+                  Hafta sonu {place.weekdayDescriptions[5]?.split(":").slice(1).join(":").trim()}
+                </p>
+              </div>
             </div>
           )}
           {place.rating != null && place.userRatingCount != null && (
-            <div className="text-sm text-muted-foreground">
-              Google puanı{" "}
-              <span className="font-display text-xl text-foreground">
-                {place.rating.toFixed(1)}
-              </span>{" "}
-              · {place.userRatingCount} değerlendirme
+            <div className="py-8 md:pl-10">
+              <p className="eyebrow text-[0.6rem] text-muted-foreground/70">Google puanı</p>
+              <div className="mt-2 flex items-baseline gap-3">
+                <span className="font-display text-4xl leading-none text-accent">
+                  {place.rating.toFixed(1)}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {place.userRatingCount} değerlendirme
+                </span>
+              </div>
             </div>
           )}
         </div>
@@ -220,14 +231,30 @@ function Home() {
           {areas.map((area, index) => (
             <Reveal key={area.title} delay={index * 120}>
               <Link to={area.to} className="group block">
-                <PhotoFrame
-                  src={area.photo.url}
-                  alt={area.photo.alt}
-                  className="aspect-[3/4]"
-                  imageClassName="transition-transform duration-1000 group-hover:scale-[1.04]"
-                />
-                <h3 className="mt-7 text-2xl text-foreground">{area.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{area.body}</p>
+                <div className="relative">
+                  <PhotoFrame
+                    src={area.photo.url}
+                    alt={area.photo.alt}
+                    className="aspect-[3/4]"
+                    imageClassName="transition-transform duration-1000 group-hover:scale-[1.05]"
+                  />
+                  <span className="pointer-events-none absolute left-5 top-5 font-display text-sm tracking-[0.2em] text-plaster/70">
+                    0{index + 1}
+                  </span>
+                  <span className="pointer-events-none absolute inset-0 rounded-[1.25rem] ring-1 ring-inset ring-transparent transition-colors duration-500 group-hover:ring-accent/40" />
+                </div>
+                <div className="mt-7 flex items-center justify-between gap-4">
+                  <h3 className="text-2xl text-foreground transition-colors duration-300 group-hover:text-accent">
+                    {area.title}
+                  </h3>
+                  <ArrowUpRight
+                    size={18}
+                    aria-hidden
+                    className="shrink-0 text-accent opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+                  />
+                </div>
+                <span className="mt-4 block h-px w-full origin-left scale-x-100 bg-border transition-transform duration-500 group-hover:bg-accent/50" />
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{area.body}</p>
               </Link>
             </Reveal>
           ))}
