@@ -36,11 +36,11 @@ export function Reveal({
   return (
     <Tag
       className={className}
-      initial={{ opacity: 0, y: offset.y, x: offset.x, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, x: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: offset.y, x: offset.x, scale: 0.97, filter: "blur(10px)" }}
+      whileInView={{ opacity: 1, y: 0, x: 0, scale: 1, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "0px 0px -12% 0px" }}
       transition={{
-        duration: 1,
+        duration: 0.95,
         delay: delay / 1000,
         ease: [0.16, 1, 0.3, 1],
       }}
