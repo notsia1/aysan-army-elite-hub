@@ -47,7 +47,8 @@ void main() {
   vec2 scale = canvasAspect > imgAspect
     ? vec2(1.0, imgAspect / canvasAspect)
     : vec2(canvasAspect / imgAspect, 1.0);
-  vec2 uv = (v_uv - 0.5) / scale + 0.5;
+  vec2 flipped = vec2(v_uv.x, 1.0 - v_uv.y);
+  vec2 uv = (flipped - 0.5) / scale + 0.5;
 
   // breathing zoom + intro push-in
   float zoom = 1.06 + 0.02 * sin(u_time * 0.18) + 0.10 * (1.0 - u_intro);
@@ -176,7 +177,6 @@ export function WebGLImage({
     image.decoding = "async";
     image.onload = () => {
       gl.bindTexture(gl.TEXTURE_2D, texture);
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
       gl.uniform1i(uTex, 0);
       gl.uniform2f(uImg, image.naturalWidth, image.naturalHeight);
