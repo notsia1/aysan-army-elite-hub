@@ -57,11 +57,6 @@ export function SiteFooter({ place }: { place: PlaceData | null }) {
               Ring, pilates ve kuvvet alanlarını tek çatı altında toplayan özel bir
               antrenman kulübü.
             </p>
-            {place?.rating != null && place.userRatingCount != null && (
-              <p className="mt-6 text-xs tracking-[0.2em] text-plaster/45 uppercase">
-                Google {place.rating.toFixed(1)} · {place.userRatingCount} değerlendirme
-              </p>
-            )}
           </div>
 
           <nav aria-label="Alt menü">
@@ -125,7 +120,6 @@ export function SiteFooter({ place }: { place: PlaceData | null }) {
           <p>
             © {year} {CLUB_NAME}
           </p>
-          <p>Adres, çalışma saatleri ve değerlendirmeler Google Haritalar&apos;dan alınır.</p>
         </div>
       </div>
     </footer>
