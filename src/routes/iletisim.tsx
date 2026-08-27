@@ -116,7 +116,7 @@ function Contact() {
         </Reveal>
       </section>
 
-      <div className="border-t border-border/60 bg-plaster">
+      <div className="border-t border-border/60 bg-secondary">
         <Reviews place={place} limit={6} />
       </div>
     </>
