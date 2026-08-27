@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Dumbbell, MapPin, Mirror, Ruler, Sparkles, Swords, Timer } from "lucide-react";
+import { ArrowUpRight, Dumbbell, MapPin, Ruler, ScanLine, Sparkles, Swords, Timer } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 
 import { PhotoFrame } from "@/components/PhotoFrame";
