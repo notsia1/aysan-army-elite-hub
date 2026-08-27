@@ -32,19 +32,19 @@ const rooms = [
   {
     eyebrow: "01 — Ring",
     title: "Ring salonu",
-    body: "Halat kenarlıklı ring, salonun merkezinde duruyor. Köşelerde sütunlara yerleştirilmiş klasik büstler, tabanda ise sıcak tonlu bant aydınlatma var. Duvar boyunca kum torbaları ve zincirli askılar sıralanıyor.",
+    body: "Salonun kalbinde, ölçüsü tam bir ring duruyor. Etrafında ağır kum torbaları ve zincirli askılar; sıcak tonlu aydınlatma ve klasik detaylarla kurulmuş, çalışırken insanı içine alan bir alan. Teknik ders, birebir çalışma ya da kendi temponuzda kondisyon için yeterince geniş.",
     photo: clubPhotos.ring,
   },
   {
     eyebrow: "02 — Pilates",
     title: "Pilates stüdyosu",
-    body: "Ahşap gövdeli reformer ve cadillac ekipmanları geniş bir zemine yayılmış. Kemerli, arkadan aydınlatılmış ayna odaya derinlik veriyor; sade duvarlar ve bitkiler sakin bir çalışma alanı kuruyor.",
+    body: "Ahşap gövdeli reformer ve cadillac ekipmanları geniş bir zemine rahatça yayılmış; sıkışık, sıra bekleyen bir stüdyo değil. Yumuşak ışık, sade duvarlar ve bitkiler; duruş, esneklik ve kontrollü güç çalışmasına odaklanmayı kolaylaştıran sakin bir oda.",
     photo: clubPhotos.pilates,
   },
   {
     eyebrow: "03 — Kuvvet",
     title: "Kuvvet alanı",
-    body: "Kemerli nişlerin altında paslanmaz çelik dambıllar ağırlıklarına göre dizili. Ahşap raflar, kablo istasyonu ve aynalar alanı bir arada tutuyor.",
+    body: "Paslanmaz çelik dambıllar ağırlıklarına göre tek tek dizili, her şey yerinde ve bakımlı. Kablo istasyonu, ahşap raflar ve boy aynalarıyla düzenli bir kuvvet bölümü — ekipman aramakla değil, çalışmakla geçen bir antrenman.",
     photo: clubPhotos.strength,
   },
 ];
@@ -58,11 +58,12 @@ function Facility() {
         <Reveal>
           <p className="eyebrow text-accent">Tesis</p>
           <h1 className="mt-5 max-w-3xl text-[clamp(2.5rem,6vw,4.5rem)] leading-[1]">
-            Salonun mimarisi antrenmanın bir parçası
+            Antrenmanın hakkını veren bir tesis
           </h1>
           <p className="mt-7 max-w-xl text-muted-foreground">
-            Aşağıdaki açıklamalar yalnızca kulübün kendi fotoğraflarında görülen alan ve
-            ekipmanları anlatır.
+            Kulübü kurarken tek bir şeye baktık: insan buraya girdiğinde çalışmak istesin.
+            Aydınlatmadan zemine, ekipman düzeninden ferahlığa kadar her alan bu yüzden
+            ayrı ayrı düşünüldü. Aşağıdaki fotoğraflar kulübün kendi alanlarına ait.
           </p>
         </Reveal>
       </section>
@@ -98,7 +99,7 @@ function Facility() {
             <OpeningHours place={place} />
           </Reveal>
           <Reveal delay={120} className="flex flex-col justify-center">
-            <h2 className="text-3xl sm:text-4xl">Ziyaret için iletişime geçin</h2>
+            <h2 className="text-3xl sm:text-4xl">Uğrayın, kahvenizi içerken gezdirelim</h2>
             <p className="mt-5 text-muted-foreground">
               {place.address ?? "Çekmeköy, İstanbul"}
             </p>
