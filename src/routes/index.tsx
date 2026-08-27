@@ -87,16 +87,17 @@ function Home() {
           style={{ y: heroY, opacity: heroOpacity, filter: heroBlur }}
           className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-24 pt-36 sm:px-8"
         >
-          <motion.img
-            src={wordmarkUrl}
-            alt="Aysan Army Elite Training Club logosu"
-            className="float-slow h-28 w-auto self-start object-contain sm:h-40"
-            initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          />
+          <motion.div
+            className="flex items-center gap-4"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="h-px w-12 bg-honey/70" aria-hidden />
+            <span className="eyebrow text-plaster/70">Çekmeköy · İstanbul</span>
+          </motion.div>
 
-          <h1 className="mt-10 max-w-4xl text-[clamp(3rem,8vw,6.5rem)] leading-[0.95] text-plaster">
+          <h1 className="mt-6 max-w-4xl text-[clamp(3.25rem,9vw,7.5rem)] leading-[0.9] text-plaster">
             <HoverText text="Boks, pilates ve kuvvet" delay={0.25} />
             <HoverText text="aynı çatı altında" className="mt-1" delay={0.5} />
           </h1>
