@@ -117,7 +117,7 @@ function Home() {
                   href={whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-plaster/40 px-7 py-3.5 text-sm font-medium text-plaster transition-colors hover:bg-plaster/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-plaster/40 px-7 py-3.5 text-sm font-medium text-plaster transition-colors hover:bg-secondary/10"
                 >
                   WhatsApp
                 </a>
@@ -129,7 +129,7 @@ function Home() {
       </section>
 
       {/* Facts strip — Google-sourced only */}
-      <section className="border-y border-border/60 bg-plaster">
+      <section className="border-y border-border/60 bg-secondary">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-3">
           {place.address && (
             <div className="flex gap-4">

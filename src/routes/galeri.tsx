@@ -55,7 +55,7 @@ function Gallery() {
       </section>
 
       {place.photoUrls.length > 0 && (
-        <section className="border-t border-border/60 bg-plaster">
+        <section className="border-t border-border/60 bg-secondary">
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
             <Reveal>
               <h2 className="eyebrow text-muted-foreground">Google Haritalar fotoğrafları</h2>
