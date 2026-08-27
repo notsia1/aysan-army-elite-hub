@@ -261,30 +261,7 @@ function Home() {
         </div>
       </section>
 
-      <Reviews place={place} limit={3} />
-
-      {/* CTA */}
-      <section className="grain border-t border-border/60 wood-panel">
-        <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 py-24 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <h2 className="max-w-2xl text-4xl text-plaster sm:text-5xl">
-              <WordsReveal text="Gelin, kulübü kendiniz görün" inView stagger={0.06} />
-            </h2>
-            <p className="mt-5 max-w-lg text-plaster/80">
-              Kulübü gezmek, alanları görmek ve size uygun programı konuşmak için kapımız
-              açık. Adres, çalışma saatleri ve iletişim kanallarının tamamı iletişim
-              sayfasında.
-            </p>
-          </div>
-          <Link
-            to="/iletisim"
-            className="inline-flex items-center gap-2 rounded-full bg-honey px-8 py-4 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
-          >
-            İletişim ve konum
-            <ArrowUpRight size={16} aria-hidden />
-          </Link>
-        </div>
-      </section>
+      <Reviews place={place} limit={4} showMap />
     </>
   );
 }
