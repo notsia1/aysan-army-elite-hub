@@ -24,6 +24,7 @@ uniform vec2 u_img;
 uniform vec2 u_pointer;
 uniform float u_time;
 uniform float u_intro;
+uniform float u_scroll;
 
 float hash(vec2 p) {
   return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
@@ -51,16 +52,18 @@ void main() {
   vec2 uv = (flipped - 0.5) / scale + 0.5;
 
   // breathing zoom + intro push-in
-  float zoom = 1.06 + 0.02 * sin(u_time * 0.18) + 0.10 * (1.0 - u_intro);
+  float zoom = 1.06 + 0.02 * sin(u_time * 0.18) + 0.10 * (1.0 - u_intro) + 0.22 * u_scroll;
   uv = (uv - 0.5) / zoom + 0.5;
 
   // pointer parallax
-  uv += u_pointer * vec2(-0.016, -0.012);
+  uv += u_pointer * vec2(-0.055, -0.042);
+  // scroll-synced vertical drift
+  uv.y += u_scroll * 0.08;
 
   // slow fluid drift
   float n1 = noise(uv * 3.0 + vec2(u_time * 0.045, u_time * 0.03));
   float n2 = noise(uv * 5.5 - vec2(u_time * 0.03, u_time * 0.05));
-  vec2 flow = vec2(n1 - 0.5, n2 - 0.5) * 0.012;
+  vec2 flow = vec2(n1 - 0.5, n2 - 0.5) * (0.012 + 0.02 * u_scroll);
   uv += flow;
 
   // subtle chromatic split away from centre
@@ -78,6 +81,8 @@ void main() {
   // vignette
   float vig = smoothstep(1.15, 0.25, length((v_uv - 0.5) * vec2(1.05, 1.25)) * 1.35);
   col *= mix(0.55, 1.0, vig);
+  // deepen as the hero scrolls away
+  col *= 1.0 - 0.35 * u_scroll;
 
   // film grain
   float g = hash(v_uv * u_res + fract(u_time) * 91.7) - 0.5;
@@ -142,6 +147,7 @@ export function WebGLImage({
     const uTime = gl.getUniformLocation(program, "u_time");
     const uPointer = gl.getUniformLocation(program, "u_pointer");
     const uIntro = gl.getUniformLocation(program, "u_intro");
+    const uScroll = gl.getUniformLocation(program, "u_scroll");
 
     const texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -155,6 +161,13 @@ export function WebGLImage({
     let start = 0;
     const pointer = { x: 0, y: 0 };
     const target = { x: 0, y: 0 };
+    const scroll = { current: 0, target: 0 };
+
+    const onScroll = () => {
+      const rect = canvas.getBoundingClientRect();
+      const span = rect.height || window.innerHeight;
+      scroll.target = Math.min(1, Math.max(0, -rect.top / span));
+    };
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -193,6 +206,8 @@ export function WebGLImage({
       const elapsed = (now - start) / 1000;
       pointer.x += (target.x - pointer.x) * 0.05;
       pointer.y += (target.y - pointer.y) * 0.05;
+      scroll.current += (scroll.target - scroll.current) * 0.08;
+      gl.uniform1f(uScroll, scroll.current);
       gl.uniform1f(uTime, elapsed);
       gl.uniform2f(uPointer, pointer.x, pointer.y);
       gl.uniform1f(uIntro, Math.min(1, elapsed / 1.6));
@@ -202,11 +217,14 @@ export function WebGLImage({
 
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", onPointer, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onPointer);
+      window.removeEventListener("scroll", onScroll);
       gl.deleteTexture(texture);
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
