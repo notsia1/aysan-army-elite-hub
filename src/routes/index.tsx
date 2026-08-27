@@ -76,9 +76,14 @@ function Home() {
       {/* Hero */}
       <section ref={heroRef} className="relative overflow-hidden bg-ink">
         <div className="absolute inset-0">
-          <WebGLImage src={clubPhotos.ring.url} alt={clubPhotos.ring.alt} />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/35" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
+          <img
+            src={clubPhotos.ring.url}
+            alt={clubPhotos.ring.alt}
+            loading="eager"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/55" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/35 to-transparent" />
         </div>
 
         <motion.div
@@ -95,9 +100,9 @@ function Home() {
             <span className="eyebrow text-plaster/70">Çekmeköy · İstanbul</span>
           </motion.div>
 
-          <h1 className="mt-6 max-w-4xl text-[clamp(3.25rem,9vw,7.5rem)] leading-[0.9] text-plaster">
-            <HoverText text="Sıradan salon" delay={0.25} />
-            <HoverText text="değil." className="mt-1 text-accent" delay={0.5} />
+          <h1 className="mt-6 max-w-5xl text-[clamp(3.5rem,10vw,8.5rem)] leading-[0.88] text-plaster">
+            <HoverText text="SINIRLI ÜYE" delay={0.25} />
+            <HoverText text="SINIRSIZ ÖZEN." className="mt-1 text-accent" delay={0.55} />
           </h1>
 
           <motion.p
@@ -152,6 +157,7 @@ function Home() {
           </motion.div>
         </motion.div>
       </section>
+
 
 
 
