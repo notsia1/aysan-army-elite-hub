@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, MapPin, Phone } from "lucide-react";
 
-import { logoUrl } from "@/lib/photos";
+import { wordmarkUrl } from "@/lib/photos";
+import { INSTAGRAM_URL } from "@/lib/instagram";
 import { CLUB_NAME, toDialable, type PlaceData } from "@/lib/place";
 
 export function SiteFooter({ place }: { place: PlaceData | null }) {
@@ -9,95 +10,96 @@ export function SiteFooter({ place }: { place: PlaceData | null }) {
   const year = 2026;
 
   return (
-    <footer className="grain border-t border-border/60 bg-secondary/40 backdrop-blur-md">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
-        <div>
-          <span className="flex items-center gap-3">
-            <span className="grid h-12 w-12 place-items-center rounded-full bg-walnut">
-              <img src={logoUrl} alt="" aria-hidden className="h-7 w-7 object-contain" />
-            </span>
-            <span className="font-display text-2xl text-foreground">Aysan Army</span>
-          </span>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-            {CLUB_NAME} — Çekmeköy&apos;de ring, pilates ve kuvvet alanlarını tek çatı
-            altında toplayan özel antrenman kulübü.
+    <footer className="relative overflow-hidden border-t border-border/60 wood-panel">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-honey/50 to-transparent"
+      />
+
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+        <div className="flex flex-col items-center text-center">
+          <img
+            src={wordmarkUrl}
+            alt={`${CLUB_NAME} logosu`}
+            className="h-28 w-auto object-contain sm:h-36"
+          />
+          <p className="mt-8 max-w-xl text-sm leading-relaxed text-plaster/70">
+            Çekmeköy&apos;de ring, pilates ve kuvvet alanlarını tek çatı altında toplayan
+            özel bir antrenman kulübü.
           </p>
           {place?.rating != null && place.userRatingCount != null && (
-            <p className="mt-4 text-sm text-muted-foreground">
-              Google puanı{" "}
-              <span className="text-foreground">{place.rating.toFixed(1)}</span> ·{" "}
-              {place.userRatingCount} değerlendirme
+            <p className="mt-5 text-xs tracking-[0.22em] text-plaster/55 uppercase">
+              Google {place.rating.toFixed(1)} · {place.userRatingCount} değerlendirme
             </p>
           )}
         </div>
 
-        <nav aria-label="Alt menü">
-          <h2 className="eyebrow text-muted-foreground">Sayfalar</h2>
-          <ul className="mt-5 space-y-3 text-sm">
-            {[
-              { to: "/tesis", label: "Tesis" },
-              { to: "/hizmetler", label: "Antrenman Alanları" },
-              { to: "/galeri", label: "Galeri" },
-              { to: "/iletisim", label: "İletişim" },
-            ].map((item) => (
-              <li key={item.to}>
-                <Link
-                  to={item.to}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="mt-16 grid gap-12 border-t border-plaster/10 pt-12 sm:grid-cols-3">
+          <nav aria-label="Alt menü">
+            <h2 className="eyebrow text-plaster/50">Sayfalar</h2>
+            <ul className="mt-5 space-y-3 text-sm">
+              {[
+                { to: "/", label: "Ana Sayfa" },
+                { to: "/tesis", label: "Tesis" },
+                { to: "/galeri", label: "Galeri" },
+                { to: "/iletisim", label: "İletişim" },
+              ].map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    className="text-plaster/70 transition-colors hover:text-honey"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div>
-          <h2 className="eyebrow text-muted-foreground">İletişim</h2>
-          <ul className="mt-5 space-y-4 text-sm text-muted-foreground">
-            {place?.address && (
-              <li className="flex gap-3">
-                <MapPin size={16} className="mt-0.5 shrink-0 text-accent" aria-hidden />
-                <a
-                  href={place.googleMapsUri}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-colors hover:text-foreground"
-                >
-                  {place.address}
-                </a>
-              </li>
-            )}
-            {dialable && place?.nationalPhone && (
-              <li className="flex gap-3">
-                <Phone size={16} className="mt-0.5 shrink-0 text-accent" aria-hidden />
-                <a
-                  href={`tel:${dialable}`}
-                  className="transition-colors hover:text-foreground"
-                >
-                  {place.nationalPhone}
-                </a>
-              </li>
-            )}
-            {place?.websiteUri && (
-              <li className="flex gap-3">
-                <Instagram size={16} className="mt-0.5 shrink-0 text-accent" aria-hidden />
-                <a
-                  href={place.websiteUri}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-colors hover:text-foreground"
-                >
-                  Instagram
-                </a>
-              </li>
-            )}
-          </ul>
+          <div>
+            <h2 className="eyebrow text-plaster/50">İletişim</h2>
+            <ul className="mt-5 space-y-4 text-sm text-plaster/70">
+              {place?.address && (
+                <li className="flex gap-3">
+                  <MapPin size={16} className="mt-0.5 shrink-0 text-honey" aria-hidden />
+                  <a
+                    href={place.googleMapsUri}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-honey"
+                  >
+                    {place.address}
+                  </a>
+                </li>
+              )}
+              {dialable && place?.nationalPhone && (
+                <li className="flex gap-3">
+                  <Phone size={16} className="mt-0.5 shrink-0 text-honey" aria-hidden />
+                  <a href={`tel:${dialable}`} className="transition-colors hover:text-honey">
+                    {place.nationalPhone}
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="eyebrow text-plaster/50">Takip edin</h2>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 rounded-full border border-plaster/20 px-5 py-2.5 text-sm text-plaster/80 transition-colors hover:border-honey/60 hover:text-honey"
+            >
+              <Instagram size={16} aria-hidden />
+              @aysanarmytraining
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className="border-t border-border/60">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <div className="border-t border-plaster/10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-plaster/50 sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <p>
             © {year} {CLUB_NAME}
           </p>
