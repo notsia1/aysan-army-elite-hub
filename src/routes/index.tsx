@@ -129,7 +129,7 @@ function Home() {
       </section>
 
       {/* Facts strip — Google-sourced only */}
-      <section className="border-y border-border/60 bg-secondary">
+      <section className="border-y border-border/60 bg-secondary/40 backdrop-blur-md">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-3">
           {place.address && (
             <div className="flex gap-4">

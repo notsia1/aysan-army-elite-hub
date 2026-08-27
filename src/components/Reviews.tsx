@@ -28,7 +28,7 @@ export function Reviews({ place, limit }: { place: PlaceData; limit?: number }) 
       <ul className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {reviews.map((review, index) => (
           <Reveal as="li" key={review.id} delay={index * 90}>
-            <figure className="flex h-full flex-col gap-5 rounded-lg border border-border/70 bg-card p-7 glow-soft">
+            <figure className="flex h-full flex-col gap-5 rounded-lg border border-border/70 bg-card/70 backdrop-blur-sm lift p-7 glow-soft">
               <div className="flex items-center gap-3">
                 <span className="relative grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full bg-muted font-display text-base text-foreground">
                   {review.authorName.charAt(0)}
