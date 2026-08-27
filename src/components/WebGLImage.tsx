@@ -52,7 +52,7 @@ void main() {
   vec2 uv = (flipped - 0.5) / scale + 0.5;
 
   // breathing zoom + intro push-in
-  float zoom = 1.06 + 0.02 * sin(u_time * 0.18) + 0.10 * (1.0 - u_intro) + 0.22 * u_scroll;
+  float zoom = 1.06 + 0.045 * sin(u_time * 0.13) + 0.10 * (1.0 - u_intro) + 0.22 * u_scroll;
   uv = (uv - 0.5) / zoom + 0.5;
 
   // pointer parallax
@@ -180,7 +180,15 @@ export function WebGLImage({
       gl.uniform2f(uRes, w, h);
     };
 
+    // Pointer parallax only on real pointer devices; touch screens get a slow
+    // automatic drift instead (a finger drag on mobile jerked the frame).
+    const finePointer =
+      typeof window.matchMedia === "function"
+        ? window.matchMedia("(hover: hover) and (pointer: fine)").matches
+        : true;
+
     const onPointer = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse") return;
       target.x = (event.clientX / window.innerWidth) * 2 - 1;
       target.y = (event.clientY / window.innerHeight) * 2 - 1;
     };
@@ -204,6 +212,10 @@ export function WebGLImage({
       frame = requestAnimationFrame(render);
       if (!ready) return;
       const elapsed = (now - start) / 1000;
+      if (!finePointer) {
+        target.x = Math.sin(elapsed * 0.11) * 0.85;
+        target.y = Math.cos(elapsed * 0.08) * 0.6;
+      }
       pointer.x += (target.x - pointer.x) * 0.05;
       pointer.y += (target.y - pointer.y) * 0.05;
       scroll.current += (scroll.target - scroll.current) * 0.08;
@@ -216,7 +228,9 @@ export function WebGLImage({
     frame = requestAnimationFrame(render);
 
     window.addEventListener("resize", resize);
-    window.addEventListener("pointermove", onPointer, { passive: true });
+    if (finePointer) {
+      window.addEventListener("pointermove", onPointer, { passive: true });
+    }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
