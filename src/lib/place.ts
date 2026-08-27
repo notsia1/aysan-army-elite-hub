@@ -47,14 +47,18 @@ export function toDialable(phone: string | null): string | null {
   return digits.length >= 10 ? digits : null;
 }
 
-/** wa.me link; normalises Turkish local formats to +90. */
+/** wa.me link with prefilled message; normalises Turkish local formats to +90. */
 export function toWhatsApp(phone: string | null): string | null {
   const dialable = toDialable(phone);
   if (!dialable) return null;
   let digits = dialable.replace(/\D/g, "");
   if (digits.startsWith("0")) digits = `90${digits.slice(1)}`;
   else if (digits.length === 10) digits = `90${digits}`;
-  return `https://wa.me/${digits}`;
+  const text = encodeURIComponent(
+    "Merhaba, Aysan Army Elite Training Club hakkında bilgi almak istiyorum.",
+  );
+  return `https://wa.me/${digits}?text=${text}`;
 }
+
 
 
