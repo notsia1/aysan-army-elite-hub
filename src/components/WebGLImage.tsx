@@ -180,18 +180,8 @@ export function WebGLImage({
       gl.uniform2f(uRes, w, h);
     };
 
-    // Pointer parallax only on real pointer devices; touch screens get a slow
-    // automatic drift instead (a finger drag on mobile jerked the frame).
-    const finePointer =
-      typeof window.matchMedia === "function"
-        ? window.matchMedia("(hover: hover) and (pointer: fine)").matches
-        : true;
-
-    const onPointer = (event: PointerEvent) => {
-      if (event.pointerType !== "mouse") return;
-      target.x = (event.clientX / window.innerWidth) * 2 - 1;
-      target.y = (event.clientY / window.innerHeight) * 2 - 1;
-    };
+    // No pointer reaction: the frame drifts and breathes on its own, identically
+    // on desktop and mobile.
 
     const image = new Image();
     image.crossOrigin = "anonymous";
@@ -212,10 +202,8 @@ export function WebGLImage({
       frame = requestAnimationFrame(render);
       if (!ready) return;
       const elapsed = (now - start) / 1000;
-      if (!finePointer) {
-        target.x = Math.sin(elapsed * 0.11) * 0.85;
-        target.y = Math.cos(elapsed * 0.08) * 0.6;
-      }
+      target.x = Math.sin(elapsed * 0.1) * 0.8;
+      target.y = Math.cos(elapsed * 0.075) * 0.55;
       pointer.x += (target.x - pointer.x) * 0.05;
       pointer.y += (target.y - pointer.y) * 0.05;
       scroll.current += (scroll.target - scroll.current) * 0.08;
@@ -228,16 +216,12 @@ export function WebGLImage({
     frame = requestAnimationFrame(render);
 
     window.addEventListener("resize", resize);
-    if (finePointer) {
-      window.addEventListener("pointermove", onPointer, { passive: true });
-    }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
-      window.removeEventListener("pointermove", onPointer);
       window.removeEventListener("scroll", onScroll);
       gl.deleteTexture(texture);
       gl.deleteBuffer(buffer);

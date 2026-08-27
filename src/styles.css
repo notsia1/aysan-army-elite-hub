@@ -396,3 +396,24 @@
   color: var(--honey);
   text-shadow: 0 10px 30px oklch(0.8 0.128 76 / 0.35);
 }
+
+/* Hero scroll cue: honey pulse travelling down a hairline. */
+@utility scroll-line {
+  position: relative;
+}
+
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: -100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--honey));
+  animation: scroll-cue 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes scroll-cue {
+  0% { transform: translateY(0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(200%); opacity: 0; }
+}
