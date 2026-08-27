@@ -1,6 +1,8 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Clock, MapPin } from "lucide-react";
+import { motion } from "motion/react";
+
 
 import { ArchPhoto } from "@/components/ArchPhoto";
 import { GoogleRating } from "@/components/GoogleRating";
