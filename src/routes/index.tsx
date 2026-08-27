@@ -1,6 +1,8 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Clock, MapPin } from "lucide-react";
+import { motion } from "motion/react";
+
 
 import { ArchPhoto } from "@/components/ArchPhoto";
 import { GoogleRating } from "@/components/GoogleRating";
@@ -62,41 +64,44 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden bg-ink">
         <div className="absolute inset-0">
-          <img
+          <motion.img
             src={clubPhotos.ring.url}
             alt={clubPhotos.ring.alt}
             className="h-full w-full object-cover"
             loading="eager"
+            initial={{ scale: 1.12, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 2.4, ease: [0.16, 1, 0.3, 1] }}
           />
-          <div className="absolute inset-0 bg-ink/55" />
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/45 to-ink/95" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/35" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
         </div>
 
-        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-20 pt-36 sm:px-8">
+        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-24 pt-36 sm:px-8">
           <Reveal>
             <img
               src={logoUrl}
               alt="Aysan Army Elite Training Club logosu"
-              className="h-16 w-auto object-contain sm:h-20"
+              className="h-20 w-auto object-contain sm:h-28"
             />
           </Reveal>
 
-          <Reveal delay={120}>
-            <h1 className="mt-8 max-w-4xl text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.95] text-plaster">
+          <Reveal delay={160}>
+            <h1 className="mt-10 max-w-4xl text-[clamp(3rem,8vw,6.5rem)] text-plaster">
               Ring, pilates ve kuvvet
-              <span className="block italic text-honey">tek çatı altında</span>
+              <span className="mt-1 block text-honey">tek çatı altında</span>
             </h1>
           </Reveal>
 
-          <Reveal delay={220}>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-plaster/85">
+          <Reveal delay={260}>
+            <p className="mt-8 max-w-xl text-base leading-relaxed text-plaster/80">
               Çekmeköy&apos;de, kemerli ışıklar ve klasik heykellerle kurgulanmış özel bir
               antrenman kulübü. {place.primaryType ? `Google’da ${place.primaryType.toLocaleLowerCase("tr")} olarak listelenir.` : ""}
             </p>
           </Reveal>
+
 
           <Reveal delay={320}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
