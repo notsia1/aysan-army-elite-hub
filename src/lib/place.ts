@@ -47,8 +47,12 @@ export function toDialable(phone: string | null): string | null {
   return digits.length >= 10 ? digits : null;
 }
 
-export function toWhatsApp(phone: string | null): string | null {
+/** Always returns a wa.me link; normalises Turkish local formats to +90. */
+export function toWhatsApp(phone: string | null): string {
   const dialable = toDialable(phone);
-  if (!dialable) return null;
-  return `https://wa.me/${dialable.replace(/\D/g, "")}`;
+  let digits = (dialable ?? "").replace(/\D/g, "");
+  if (digits.startsWith("0")) digits = `90${digits.slice(1)}`;
+  else if (digits.length === 10) digits = `90${digits}`;
+  return `https://wa.me/${digits || "905437800768"}`;
 }
+
