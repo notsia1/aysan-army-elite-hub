@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -22,10 +23,12 @@ export function WordsReveal({
   inView?: boolean;
 }) {
   const words = text.split(" ");
-  const animation = { y: "0%", opacity: 1, rotate: 0 };
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const seen = useInView(ref, { once: true, margin: "0px 0px -12% 0px" });
+  const play = inView ? seen : true;
 
   return (
-    <span className={cn("inline-flex flex-wrap", className)}>
+    <span ref={ref} className={cn("inline-flex flex-wrap", className)}>
       {words.map((word, index) => (
         <span
           key={`${word}-${index}`}
@@ -34,9 +37,7 @@ export function WordsReveal({
           <motion.span
             className={cn("inline-block will-change-transform", wordClassName)}
             initial={{ y: "110%", opacity: 0, rotate: 1.5 }}
-            {...(inView
-              ? { whileInView: animation, viewport: { once: true, amount: 0.4 } }
-              : { animate: animation })}
+            animate={play ? { y: "0%", opacity: 1, rotate: 0 } : undefined}
             transition={{
               duration: 1.05,
               delay: delay + index * stagger,

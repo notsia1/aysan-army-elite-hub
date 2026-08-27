@@ -11,7 +11,7 @@ import { Reveal } from "@/components/Reveal";
 import { WebGLImage } from "@/components/WebGLImage";
 import { WordsReveal } from "@/components/WordsReveal";
 import { Reviews } from "@/components/Reviews";
-import { clubPhotos, logoUrl } from "@/lib/photos";
+import { clubPhotos, wordmarkUrl } from "@/lib/photos";
 import { placeQueryOptions } from "@/lib/place-query";
 import { toWhatsApp } from "@/lib/place";
 
@@ -87,9 +87,9 @@ function Home() {
           className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-24 pt-36 sm:px-8"
         >
           <motion.img
-            src={logoUrl}
+            src={wordmarkUrl}
             alt="Aysan Army Elite Training Club logosu"
-            className="float-slow h-20 w-auto self-start object-contain sm:h-28"
+            className="float-slow h-28 w-auto self-start object-contain sm:h-40"
             initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}

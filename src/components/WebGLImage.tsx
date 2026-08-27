@@ -76,11 +76,11 @@ void main() {
 
   // honey light bloom sweeping slowly across the frame
   float sweep = smoothstep(0.55, 0.0, abs(v_uv.x - (0.5 + 0.45 * sin(u_time * 0.12))));
-  col += vec3(0.92, 0.66, 0.28) * sweep * 0.05;
+  col += vec3(0.92, 0.66, 0.28) * sweep * 0.02;
 
   // vignette
   float vig = smoothstep(1.15, 0.25, length((v_uv - 0.5) * vec2(1.05, 1.25)) * 1.35);
-  col *= mix(0.55, 1.0, vig);
+  col *= mix(0.42, 1.0, vig);
   // deepen as the hero scrolls away
   col *= 1.0 - 0.35 * u_scroll;
 
