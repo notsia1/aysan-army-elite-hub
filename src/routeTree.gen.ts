@@ -14,6 +14,7 @@ import { Route as GaleriRouteImport } from './routes/galeri'
 import { Route as GirisRouteImport } from './routes/giris'
 import { Route as IletisimRouteImport } from './routes/iletisim'
 import { Route as TesisRouteImport } from './routes/tesis'
+import { Route as YonetimRouteImport } from './routes/yonetim'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const TesisRoute = TesisRouteImport.update({
   path: '/tesis',
   getParentRoute: () => rootRouteImport,
 } as any)
+const YonetimRoute = YonetimRouteImport.update({
+  id: '/yonetim',
+  path: '/yonetim',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/giris': typeof GirisRoute
   '/iletisim': typeof IletisimRoute
   '/tesis': typeof TesisRoute
+  '/yonetim': typeof YonetimRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/giris': typeof GirisRoute
   '/iletisim': typeof IletisimRoute
   '/tesis': typeof TesisRoute
+  '/yonetim': typeof YonetimRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,21 @@ export interface FileRoutesById {
   '/giris': typeof GirisRoute
   '/iletisim': typeof IletisimRoute
   '/tesis': typeof TesisRoute
+  '/yonetim': typeof YonetimRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/galeri' | '/giris' | '/iletisim' | '/tesis'
+  fullPaths: '/' | '/galeri' | '/giris' | '/iletisim' | '/tesis' | '/yonetim'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/galeri' | '/giris' | '/iletisim' | '/tesis'
-  id: '__root__' | '/' | '/galeri' | '/giris' | '/iletisim' | '/tesis'
+  to: '/' | '/galeri' | '/giris' | '/iletisim' | '/tesis' | '/yonetim'
+  id:
+    | '__root__'
+    | '/'
+    | '/galeri'
+    | '/giris'
+    | '/iletisim'
+    | '/tesis'
+    | '/yonetim'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +93,7 @@ export interface RootRouteChildren {
   GirisRoute: typeof GirisRoute
   IletisimRoute: typeof IletisimRoute
   TesisRoute: typeof TesisRoute
+  YonetimRoute: typeof YonetimRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +133,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TesisRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/yonetim': {
+      id: '/yonetim'
+      path: '/yonetim'
+      fullPath: '/yonetim'
+      preLoaderRoute: typeof YonetimRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +149,7 @@ const rootRouteChildren: RootRouteChildren = {
   GirisRoute: GirisRoute,
   IletisimRoute: IletisimRoute,
   TesisRoute: TesisRoute,
+  YonetimRoute: YonetimRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
