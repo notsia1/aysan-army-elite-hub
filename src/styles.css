@@ -382,3 +382,17 @@
   }
 }
 
+
+/* Hover-reactive headline letters: lift, brighten, honey edge under cursor. */
+@utility hover-letter {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.35s ease,
+    text-shadow 0.35s ease;
+}
+
+.hover-letter:hover {
+  transform: translateY(-0.08em) scale(1.06);
+  color: var(--honey);
+  text-shadow: 0 10px 30px oklch(0.8 0.128 76 / 0.35);
+}
