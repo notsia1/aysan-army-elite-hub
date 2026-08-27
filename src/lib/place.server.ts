@@ -68,24 +68,41 @@ function describeGatewayFailure(status: number, body: string): string {
   return `Google Maps isteği başarısız [${status}]: ${body}`;
 }
 
-async function gatewayFetch(path: string, init: RequestInit): Promise<Response> {
+class MissingCredentialsError extends Error {}
+
+/**
+ * Places (New) isteği. İki yol desteklenir:
+ *  - Lovable ağ geçidi (LOVABLE_API_KEY + GOOGLE_MAPS_API_KEY) — Lovable'da otomatik.
+ *  - Doğrudan Google Places API (GOOGLE_PLACES_API_KEY) — yerel geliştirme için.
+ * `path`, "/places/{id}" gibi Places v1 yoludur.
+ */
+async function placesFetch(path: string, init: RequestInit): Promise<Response> {
   const lovableKey = process.env["LOVABLE_API_KEY"];
   const connectionKey = process.env["GOOGLE_MAPS_API_KEY"];
-  if (!lovableKey || !connectionKey) {
-    throw new Error("Google Maps bağlantı bilgileri eksik");
+  const directKey = process.env["GOOGLE_PLACES_API_KEY"];
+
+  if (lovableKey && connectionKey) {
+    const headers = new Headers(init.headers);
+    headers.set("Authorization", `Bearer ${lovableKey}`);
+    headers.set("X-Connection-Api-Key", connectionKey);
+    return fetch(`${GATEWAY_URL}/places/v1${path}`, { ...init, headers });
   }
-  const headers = new Headers(init.headers);
-  headers.set("Authorization", `Bearer ${lovableKey}`);
-  headers.set("X-Connection-Api-Key", connectionKey);
-  return fetch(`${GATEWAY_URL}${path}`, { ...init, headers });
+
+  if (directKey) {
+    const headers = new Headers(init.headers);
+    headers.set("X-Goog-Api-Key", directKey);
+    return fetch(`https://places.googleapis.com/v1${path}`, { ...init, headers });
+  }
+
+  throw new MissingCredentialsError("Google Maps bağlantı bilgileri eksik");
 }
 
 async function resolvePhotoUrls(photoNames: string[]): Promise<string[]> {
   const urls: string[] = [];
   for (const photoName of photoNames) {
     try {
-      const response = await gatewayFetch(
-        `/places/v1/${photoName}/media?maxWidthPx=1600&skipHttpRedirect=true`,
+      const response = await placesFetch(
+        `/${photoName}/media?maxWidthPx=1600&skipHttpRedirect=true`,
         { method: "GET" },
       );
       if (!response.ok) {
@@ -107,7 +124,7 @@ export async function loadPlaceData(): Promise<PlaceData> {
   if (cache && Date.now() - cache.at < CACHE_TTL_MS) return cache.data;
 
   try {
-    const response = await gatewayFetch(`/places/v1/places/${PLACE_ID}`, {
+    const response = await placesFetch(`/places/${PLACE_ID}`, {
       method: "GET",
       headers: {
         "X-Goog-FieldMask": FIELD_MASK,
@@ -179,7 +196,16 @@ export async function loadPlaceData(): Promise<PlaceData> {
     cache = { at: Date.now(), data };
     return data;
   } catch (error) {
-    console.error("Google Maps yer verisi alınamadı", error);
+    if (error instanceof MissingCredentialsError) {
+      // Yerel geliştirmede beklenen durum: anahtar yok → doğrulanmış sabit
+      // bilgilerle devam et, siteyi çökertme.
+      console.warn(
+        "Google Maps anahtarı tanımlı değil; doğrulanmış sabit bilgilerle devam ediliyor. " +
+          "Yerelde canlı veri için .env içine GOOGLE_PLACES_API_KEY ekleyin.",
+      );
+    } else {
+      console.error("Google Maps yer verisi alınamadı", error);
+    }
     return cache?.data ?? fallback();
   }
 }
