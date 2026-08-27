@@ -98,8 +98,8 @@ function Home() {
           </motion.div>
 
           <h1 className="mt-6 max-w-4xl text-[clamp(3.25rem,9vw,7.5rem)] leading-[0.9] text-plaster">
-            <HoverText text="Boks, pilates ve kuvvet" delay={0.25} />
-            <HoverText text="aynı çatı altında" className="mt-1" delay={0.5} />
+            <HoverText text="Sıradan salon" delay={0.25} />
+            <HoverText text="değil." className="mt-1 text-accent" delay={0.5} />
           </h1>
 
           <motion.p
