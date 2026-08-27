@@ -1,0 +1,95 @@
+import {
+  CLUB_NAME,
+  MAPS_SHORT_URL,
+  PLACE_LAT,
+  PLACE_LNG,
+  type PlaceData,
+} from "./place";
+
+/**
+ * Sabit (statik) kulüp bilgisi ve Google değerlendirmeleri.
+ * Hiçbir API çağrısı yapılmaz — veriler doğrulanmış Google Haritalar
+ * kaydından bir kez alınıp buraya yazılmıştır. Güncellemek için bu dosyayı
+ * düzenlemek yeterlidir.
+ */
+export const PLACE_DATA: PlaceData = {
+  name: CLUB_NAME,
+  address: "Merkez, Atlas Sk. No:9 D:E, 34794 Çekmeköy/İstanbul, Türkiye",
+  nationalPhone: "0539 911 57 49",
+  internationalPhone: "+90 539 911 57 49",
+  websiteUri: "https://www.instagram.com/aysanarmytraining",
+  rating: 5,
+  userRatingCount: 114,
+  openNow: null,
+  weekdayDescriptions: [
+    "Pazartesi: 06:30–22:30",
+    "Salı: 06:30–22:30",
+    "Çarşamba: 06:30–22:30",
+    "Perşembe: 06:30–22:30",
+    "Cuma: 06:30–22:30",
+    "Cumartesi: 07:00–21:00",
+    "Pazar: 07:00–21:00",
+  ],
+  googleMapsUri: MAPS_SHORT_URL,
+  primaryType: "Spor salonu",
+  reviews: [
+    {
+      id: "review-merve-kt",
+      rating: 5,
+      text: "Yaklaşık iki aydır buraya devam ediyorum. Temiz düzgün işini hakkıyla yapan bir yer. Hilal hocam sayesinde çok yol katettik. Motivasyonu ve güler yüzü severek gelmemi sağlıyor. İş disiplini çok iyi.",
+      authorName: "Merve KT",
+      authorPhotoUrl: null,
+      authorUri: null,
+      relativeTime: "3 ay önce",
+      publishTime: "2026-05-20T12:38:53Z",
+      reviewUri: MAPS_SHORT_URL,
+    },
+    {
+      id: "review-yusuf-ketenci",
+      rating: 5,
+      text: "AysanArmy Training sadece bir spor salonu değil, gerçekten disiplin, motivasyon ve gelişimin bir arada olduğu bir ortam. Özellikle Eren Hoca, bilgi birikimi, birebir ilgisi ve motive edici yaklaşımıyla fark yaratıyor. Her seviyeye uygun, bilinçli ve güvenli antrenman yaptırması sayesinde hem fiziksel hem de mental olarak ciddi bir ilerleme kaydediyorsunuz. Spor yapmak isteyen herkese gönül rahatlığıyla tavsiye ederim.",
+      authorName: "Yusuf Ketenci",
+      authorPhotoUrl: null,
+      authorUri: null,
+      relativeTime: "7 ay önce",
+      publishTime: "2026-01-20T21:53:30Z",
+      reviewUri: MAPS_SHORT_URL,
+    },
+    {
+      id: "review-fatih-aslan",
+      rating: 5,
+      text: "Fatih hocayı eski çalıştığı salondan bilirim. Kendisi pt olarak çalışmaya başladıktan sonra spor salonuna farklı bir vizyon getirdi. Şimdiki salonunda ziyaret etme fırsatım oldu, abartmıyorum Türkiye'de bulunan en iyi özel ders alabileceğiniz salonlardan bir tanesidir.",
+      authorName: "Fatih Aslan",
+      authorPhotoUrl: null,
+      authorUri: null,
+      relativeTime: "6 ay önce",
+      publishTime: "2026-02-08T13:32:58Z",
+      reviewUri: MAPS_SHORT_URL,
+    },
+    {
+      id: "review-kevser-sarioglu",
+      rating: 5,
+      text: "Bildiğiniz tüm özel stüdyoları unutun :) burası bambaşka. Özenle dizayn edilmiş, her köşesinde emek ve çaba olan oldukça lüks bir salon. Tertemiz ve özenli bir yer, deneyimli hocalar arıyorsanız, adres burası.",
+      authorName: "Kevser Sarıoğlu",
+      authorPhotoUrl: null,
+      authorUri: null,
+      relativeTime: "2 yıl önce",
+      publishTime: "2024-07-21T15:00:21Z",
+      reviewUri: MAPS_SHORT_URL,
+    },
+    {
+      id: "review-sevil-senel",
+      rating: 5,
+      text: "Bir süredir gittiğim ve seçimimden çok memnun olduğum bir yer. Spor salonu ama ev sıcaklığında ve temizliğinde. Son derece disiplinliler ve işlerini özveriyle yapıyorlar. Özlem hocayla çalışıyorum; fitness ve pilates dersini aynı hocadan alabiliyorum. Tavsiye ederim.",
+      authorName: "SEVİL ŞENEL",
+      authorPhotoUrl: null,
+      authorUri: null,
+      relativeTime: "9 ay önce",
+      publishTime: "2025-11-26T16:22:21Z",
+      reviewUri: MAPS_SHORT_URL,
+    },
+  ],
+  photoUrls: [],
+  lat: PLACE_LAT,
+  lng: PLACE_LNG,
+};
