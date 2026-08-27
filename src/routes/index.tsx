@@ -7,6 +7,8 @@ import { motion } from "motion/react";
 import { ArchPhoto } from "@/components/ArchPhoto";
 import { GoogleRating } from "@/components/GoogleRating";
 import { Reveal } from "@/components/Reveal";
+import { WebGLImage } from "@/components/WebGLImage";
+import { WordsReveal } from "@/components/WordsReveal";
 import { Reviews } from "@/components/Reviews";
 import { clubPhotos, logoUrl } from "@/lib/photos";
 import { placeQueryOptions } from "@/lib/place-query";
@@ -188,7 +190,8 @@ function Home() {
           <p className="eyebrow text-accent">Salonun içi</p>
           <h2 className="mt-4 text-4xl sm:text-5xl">Üç ayrı alan, tek bir kulüp</h2>
           <p className="mt-5 text-muted-foreground">
-            Aşağıdakiler kulübün kendi fotoğraflarında görülen alanlardır.
+            Üç ayrı disiplin, üç ayrı alan; hepsi aynı özenle kurulmuş tek bir kulübün
+            parçası. Hangi alanda çalışırsanız çalışın, ekipman ve düzen aynı standartta.
           </p>
         </Reveal>
 
@@ -217,11 +220,12 @@ function Home() {
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 py-24 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="max-w-2xl text-4xl text-plaster sm:text-5xl">
-              Salonu görmek için uğrayın
+              Gelin, kulübü kendiniz görün
             </h2>
             <p className="mt-5 max-w-lg text-plaster/80">
-              Adres, çalışma saatleri ve iletişim bilgileri iletişim sayfasında güncel
-              olarak yer alıyor.
+              Kulübü gezmek, alanları görmek ve size uygun programı konuşmak için kapımız
+              açık. Adres, çalışma saatleri ve iletişim kanallarının tamamı iletişim
+              sayfasında.
             </p>
           </div>
           <Link
