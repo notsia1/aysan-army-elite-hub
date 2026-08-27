@@ -258,8 +258,34 @@ function Facility() {
               </Reveal>
             ))}
           </div>
+
+          {place.photoUrls.length > 0 && (
+            <>
+              <Reveal className="mt-24 max-w-2xl">
+                <p className="eyebrow text-accent">Google Haritalar</p>
+                <h2 className="mt-4 text-4xl sm:text-5xl">Yer kaydındaki fotoğraflar</h2>
+                <p className="mt-5 text-muted-foreground">
+                  Google Haritalar üzerindeki kulüp kaydına yüklenen kareler, doğrudan buraya
+                  aktarılıyor.
+                </p>
+              </Reveal>
+
+              <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {place.photoUrls.map((url, index) => (
+                  <Reveal key={url} delay={index * 90}>
+                    <PhotoFrame
+                      src={url}
+                      alt={`${place.name} — Google Haritalar fotoğrafı ${index + 1}`}
+                      className="aspect-[4/3]"
+                    />
+                  </Reveal>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
+
 
       {/* Location + hours */}
       <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8">

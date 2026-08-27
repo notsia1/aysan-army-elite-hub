@@ -120,6 +120,10 @@ export function SiteFooter({ place }: { place: PlaceData | null }) {
           <p>
             © {year} {CLUB_NAME}
           </p>
+          <Link to="/giris" className="transition-colors hover:text-honey">
+            Yönetim
+          </Link>
+
         </div>
       </div>
     </footer>
