@@ -2,14 +2,13 @@ import { Link } from "@tanstack/react-router";
 import { Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { logoUrl } from "@/lib/photos";
+import { wordmarkUrl } from "@/lib/photos";
 import { CLUB_NAME, toDialable } from "@/lib/place";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { to: "/", label: "Ana Sayfa" },
   { to: "/tesis", label: "Tesis" },
-  { to: "/hizmetler", label: "Antrenman Alanları" },
   { to: "/galeri", label: "Galeri" },
   { to: "/iletisim", label: "İletişim" },
 ] as const;
@@ -42,9 +41,9 @@ export function SiteHeader({ phone }: { phone: string | null }) {
           onClick={() => setOpen(false)}
         >
           <img
-            src={logoUrl}
+            src={wordmarkUrl}
             alt={`${CLUB_NAME} logosu`}
-            className="h-12 w-auto object-contain sm:h-14"
+            className="h-14 w-auto object-contain sm:h-16"
           />
         </Link>
 

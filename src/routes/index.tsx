@@ -1,16 +1,17 @@
+import { useRef } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Clock, MapPin } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 
-import { ArchPhoto } from "@/components/ArchPhoto";
+import { PhotoFrame } from "@/components/PhotoFrame";
 import { GoogleRating } from "@/components/GoogleRating";
 import { Reveal } from "@/components/Reveal";
 import { WebGLImage } from "@/components/WebGLImage";
 import { WordsReveal } from "@/components/WordsReveal";
 import { Reviews } from "@/components/Reviews";
-import { clubPhotos, logoUrl } from "@/lib/photos";
+import { clubPhotos, wordmarkUrl } from "@/lib/photos";
 import { placeQueryOptions } from "@/lib/place-query";
 import { toWhatsApp } from "@/lib/place";
 
@@ -61,23 +62,34 @@ const areas = [
 
 function Home() {
   const { data: place } = useSuspenseQuery(placeQueryOptions);
+  const heroRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const heroBlur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(6px)"]);
   const whatsapp = toWhatsApp(place.internationalPhone ?? place.nationalPhone);
 
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-ink">
+      <section ref={heroRef} className="relative overflow-hidden bg-ink">
         <div className="absolute inset-0">
           <WebGLImage src={clubPhotos.ring.url} alt={clubPhotos.ring.alt} />
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/35" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
         </div>
 
-        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-24 pt-36 sm:px-8">
+        <motion.div
+          style={{ y: heroY, opacity: heroOpacity, filter: heroBlur }}
+          className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-24 pt-36 sm:px-8"
+        >
           <motion.img
-            src={logoUrl}
+            src={wordmarkUrl}
             alt="Aysan Army Elite Training Club logosu"
-            className="float-slow h-20 w-auto self-start object-contain sm:h-28"
+            className="float-slow h-28 w-auto self-start object-contain sm:h-40"
             initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -133,7 +145,7 @@ function Home() {
             )}
             <GoogleRating place={place} className="border-plaster/30 bg-ink/40 text-plaster" />
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
 
@@ -188,7 +200,9 @@ function Home() {
       <section className="mx-auto max-w-7xl px-5 py-28 sm:px-8">
         <Reveal className="max-w-2xl">
           <p className="eyebrow text-accent">Salonun içi</p>
-          <h2 className="mt-4 text-4xl sm:text-5xl">Üç ayrı alan, tek bir kulüp</h2>
+          <h2 className="mt-4 text-4xl sm:text-5xl">
+            <WordsReveal text="Üç ayrı alan, tek bir kulüp" inView stagger={0.06} />
+          </h2>
           <p className="mt-5 text-muted-foreground">
             Üç ayrı disiplin, üç ayrı alan; hepsi aynı özenle kurulmuş tek bir kulübün
             parçası. Hangi alanda çalışırsanız çalışın, ekipman ve düzen aynı standartta.
@@ -199,7 +213,7 @@ function Home() {
           {areas.map((area, index) => (
             <Reveal key={area.title} delay={index * 120}>
               <Link to={area.to} className="group block">
-                <ArchPhoto
+                <PhotoFrame
                   src={area.photo.url}
                   alt={area.photo.alt}
                   className="aspect-[3/4]"
@@ -216,11 +230,11 @@ function Home() {
       <Reviews place={place} limit={3} />
 
       {/* CTA */}
-      <section className="grain border-t border-border/60 bg-walnut">
+      <section className="grain border-t border-border/60 wood-panel">
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 py-24 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="max-w-2xl text-4xl text-plaster sm:text-5xl">
-              Gelin, kulübü kendiniz görün
+              <WordsReveal text="Gelin, kulübü kendiniz görün" inView stagger={0.06} />
             </h2>
             <p className="mt-5 max-w-lg text-plaster/80">
               Kulübü gezmek, alanları görmek ve size uygun programı konuşmak için kapımız

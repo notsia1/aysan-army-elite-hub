@@ -2,7 +2,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 
-import { ArchPhoto } from "@/components/ArchPhoto";
+import { PhotoFrame } from "@/components/PhotoFrame";
 import { OpeningHours } from "@/components/OpeningHours";
 import { Reveal } from "@/components/Reveal";
 import { clubPhotos } from "@/lib/photos";
@@ -77,11 +77,10 @@ function Facility() {
             }`}
           >
             <Reveal>
-              <ArchPhoto
+              <PhotoFrame
                 src={room.photo.url}
                 alt={room.photo.alt}
                 className="aspect-[4/5]"
-                deep={index === 1}
               />
             </Reveal>
             <Reveal delay={140}>

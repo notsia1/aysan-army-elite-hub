@@ -1,7 +1,8 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
-import { ArchPhoto } from "@/components/ArchPhoto";
+import { PhotoFrame } from "@/components/PhotoFrame";
+import { InstagramReels } from "@/components/InstagramReels";
 import { Reveal } from "@/components/Reveal";
 import { clubPhotoList } from "@/lib/photos";
 import { placeQueryOptions } from "@/lib/place-query";
@@ -41,18 +42,19 @@ function Gallery() {
         </Reveal>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-5 pb-24 sm:px-8 md:grid-cols-3">
+      <section className="mx-auto grid max-w-7xl gap-8 px-5 pb-24 sm:px-8 md:grid-cols-3">
         {clubPhotoList.map((photo, index) => (
           <Reveal key={photo.url} delay={index * 110}>
-            <ArchPhoto
+            <PhotoFrame
               src={photo.url}
               alt={photo.alt}
               className="aspect-[3/4]"
-              deep={index === 1}
             />
           </Reveal>
         ))}
       </section>
+
+      <InstagramReels />
 
       {place.photoUrls.length > 0 && (
         <section className="border-t border-border/60 bg-secondary/40 backdrop-blur-md">
