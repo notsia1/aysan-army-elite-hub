@@ -4,17 +4,15 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Clock, MapPin } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 
-
 import { PhotoFrame } from "@/components/PhotoFrame";
 import { GoogleRating } from "@/components/GoogleRating";
 import { Reveal } from "@/components/Reveal";
-import { WebGLImage } from "@/components/WebGLImage";
-import { WordsReveal } from "@/components/WordsReveal";
 import { HoverText } from "@/components/HoverText";
 import { Reviews } from "@/components/Reviews";
 import { clubPhotos } from "@/lib/photos";
 import { placeQueryOptions } from "@/lib/place-query";
 import { toWhatsApp } from "@/lib/place";
+
 
 export const Route = createFileRoute("/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(placeQueryOptions),
