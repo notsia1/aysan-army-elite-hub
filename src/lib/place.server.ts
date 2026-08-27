@@ -124,7 +124,7 @@ export async function loadPlaceData(): Promise<PlaceData> {
   if (cache && Date.now() - cache.at < CACHE_TTL_MS) return cache.data;
 
   try {
-    const response = await gatewayFetch(`/places/v1/places/${PLACE_ID}`, {
+    const response = await placesFetch(`/places/${PLACE_ID}`, {
       method: "GET",
       headers: {
         "X-Goog-FieldMask": FIELD_MASK,
