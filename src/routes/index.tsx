@@ -96,13 +96,8 @@ function Home() {
           />
 
           <h1 className="mt-10 max-w-4xl text-[clamp(3rem,8vw,6.5rem)] leading-[0.95] text-plaster">
-            <WordsReveal text="Boks, pilates ve kuvvet" delay={0.25} />
-            <WordsReveal
-              text="aynı çatı altında"
-              className="mt-1"
-              wordClassName="shine-text"
-              delay={0.55}
-            />
+            <HoverText text="Boks, pilates ve kuvvet" delay={0.25} />
+            <HoverText text="aynı çatı altında" className="mt-1" delay={0.5} />
           </h1>
 
           <motion.p
