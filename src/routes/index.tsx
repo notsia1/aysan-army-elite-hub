@@ -10,6 +10,7 @@ import { GoogleRating } from "@/components/GoogleRating";
 import { Reveal } from "@/components/Reveal";
 import { WebGLImage } from "@/components/WebGLImage";
 import { WordsReveal } from "@/components/WordsReveal";
+import { HoverText } from "@/components/HoverText";
 import { Reviews } from "@/components/Reviews";
 import { clubPhotos, wordmarkUrl } from "@/lib/photos";
 import { placeQueryOptions } from "@/lib/place-query";
