@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
-import { ArchPhoto } from "@/components/ArchPhoto";
+import { PhotoFrame } from "@/components/PhotoFrame";
 import { Reveal } from "@/components/Reveal";
 import { clubPhotoList } from "@/lib/photos";
 import { placeQueryOptions } from "@/lib/place-query";
@@ -44,11 +44,10 @@ function Gallery() {
       <section className="mx-auto grid max-w-7xl gap-10 px-5 pb-24 sm:px-8 md:grid-cols-3">
         {clubPhotoList.map((photo, index) => (
           <Reveal key={photo.url} delay={index * 110}>
-            <ArchPhoto
+            <PhotoFrame
               src={photo.url}
               alt={photo.alt}
               className="aspect-[3/4]"
-              deep={index === 1}
             />
           </Reveal>
         ))}

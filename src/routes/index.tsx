@@ -4,7 +4,7 @@ import { ArrowUpRight, Clock, MapPin } from "lucide-react";
 import { motion } from "motion/react";
 
 
-import { ArchPhoto } from "@/components/ArchPhoto";
+import { PhotoFrame } from "@/components/PhotoFrame";
 import { GoogleRating } from "@/components/GoogleRating";
 import { Reveal } from "@/components/Reveal";
 import { WebGLImage } from "@/components/WebGLImage";
@@ -199,7 +199,7 @@ function Home() {
           {areas.map((area, index) => (
             <Reveal key={area.title} delay={index * 120}>
               <Link to={area.to} className="group block">
-                <ArchPhoto
+                <PhotoFrame
                   src={area.photo.url}
                   alt={area.photo.alt}
                   className="aspect-[3/4]"
