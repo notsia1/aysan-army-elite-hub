@@ -373,18 +373,12 @@
 }
 
 @utility lift {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, background-color 0.4s ease;
 
   &:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 30px 60px -32px oklch(0 0 0 / 0.85), var(--glow-honey);
-    border-color: oklch(0.8 0.128 76 / 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px -26px oklch(0 0 0 / 0.8);
+    border-color: oklch(0.8 0.128 76 / 0.28);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-  }
-}
