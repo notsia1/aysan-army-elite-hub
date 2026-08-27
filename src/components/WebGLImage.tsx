@@ -118,7 +118,7 @@ export function WebGLImage({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    
 
     const gl = canvas.getContext("webgl", { alpha: true, antialias: false });
     if (!gl) return;

@@ -2,11 +2,11 @@ import { useEffect } from "react";
 
 /**
  * Inertial (smooth) page scrolling. Lenis is loaded only in the browser so the
- * SSR pass never touches window, and it is disabled for reduced-motion users.
+ * SSR pass never touches window.
  */
 export function SmoothScroll() {
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
 
     let destroy: (() => void) | undefined;
     let frame = 0;

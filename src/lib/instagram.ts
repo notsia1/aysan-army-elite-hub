@@ -6,7 +6,12 @@ export const INSTAGRAM_URL = "https://www.instagram.com/aysanarmytraining";
  * (e.g. "https://www.instagram.com/reel/Cxxxxxxxxxx/") and it renders as an
  * embedded, playable reel.
  */
-export const reelUrls: string[] = [];
+export const reelUrls: string[] = [
+  "https://www.instagram.com/reel/DO_X_RoiOew/",
+  "https://www.instagram.com/reel/DENMitroWAl/",
+  "https://www.instagram.com/reel/C-A4Dq6NB99/",
+];
+
 
 /** Instagram's official embed URL for a reel/post permalink. */
 export function toEmbedUrl(url: string) {
