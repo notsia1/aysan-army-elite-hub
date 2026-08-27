@@ -29,27 +29,25 @@ export function SiteHeader({ phone }: { phone: string | null }) {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled
-          ? "border-b border-border/60 bg-background/85 backdrop-blur-xl"
-          : "bg-transparent",
+          ? "border-b border-plaster/10 bg-ink/90 backdrop-blur-xl"
+          : "bg-gradient-to-b from-ink/60 to-transparent",
       )}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
-        <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="grid h-11 w-11 place-items-center rounded-full bg-walnut">
-            <img src={logoUrl} alt="" aria-hidden className="h-6 w-6 object-contain" />
-          </span>
-          <span className="leading-tight">
-            <span className="block font-display text-lg tracking-wide text-foreground">
-              Aysan Army
-            </span>
-            <span className="eyebrow block text-[0.6rem] text-muted-foreground">
-              ELITE TRAINING CLUB
-            </span>
-          </span>
-          <span className="sr-only">{CLUB_NAME}</span>
+        <Link
+          to="/"
+          className="flex items-center transition-transform duration-500 hover:scale-[1.03]"
+          onClick={() => setOpen(false)}
+        >
+          <img
+            src={logoUrl}
+            alt={`${CLUB_NAME} logosu`}
+            className="h-12 w-auto object-contain sm:h-14"
+          />
         </Link>
+
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Ana menü">
           {navItems.map((item) => (
