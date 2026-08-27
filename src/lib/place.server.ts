@@ -196,7 +196,16 @@ export async function loadPlaceData(): Promise<PlaceData> {
     cache = { at: Date.now(), data };
     return data;
   } catch (error) {
-    console.error("Google Maps yer verisi alınamadı", error);
+    if (error instanceof MissingCredentialsError) {
+      // Yerel geliştirmede beklenen durum: anahtar yok → doğrulanmış sabit
+      // bilgilerle devam et, siteyi çökertme.
+      console.warn(
+        "Google Maps anahtarı tanımlı değil; doğrulanmış sabit bilgilerle devam ediliyor. " +
+          "Yerelde canlı veri için .env içine GOOGLE_PLACES_API_KEY ekleyin.",
+      );
+    } else {
+      console.error("Google Maps yer verisi alınamadı", error);
+    }
     return cache?.data ?? fallback();
   }
 }
